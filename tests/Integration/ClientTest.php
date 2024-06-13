@@ -49,7 +49,7 @@ class ClientTest extends TestCase
      **/
     public function searchV2(string $kvkNumber)
     {
-        $query = new SearchQuery();
+        $query = new SearchQuery(true);
         $query->setKvkNumber($kvkNumber);
 
         $resultaten = $this->client->searchV2($query);

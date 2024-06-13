@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Appvise\KvkApi;
 
+use Appvise\KvkApi\Http\SearchQueryInterface;
 use Appvise\KvkApi\Model\Link;
 use Appvise\KvkApi\Http\QueryInterface;
 use Appvise\KvkApi\Http\ClientInterface;
@@ -67,8 +68,11 @@ final class KvkClient implements KvkClientInterface
         return SearchMapper::fromResponse($result);
     }
 
-    public function searchV2(QueryInterface $query): ResultaatInterface
+    public function searchV2(SearchQueryInterface $query): ResultaatInterface
     {
+        // Forcefully update to V2 so the proper parameters will be used in toArray.
+        $query->setIsEndpointVersion1(false);
+
         $response = $this->client->hitEndpoint("{$this->baseUrl}api/v2/zoeken", $query);
         $result = $this->decodeJson($response);
 

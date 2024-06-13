@@ -3,6 +3,7 @@
 namespace Appvise\KvkApi;
 
 use Appvise\KvkApi\Http\QueryInterface;
+use Appvise\KvkApi\Http\SearchQueryInterface;
 use Appvise\KvkApi\Model\Link;
 use Appvise\KvkApi\Model\ResultaatInterface;
 
@@ -10,7 +11,7 @@ interface KvkClientInterface
 {
     public function search(QueryInterface $query);
 
-    public function searchV2(QueryInterface $query): ?ResultaatInterface;
+    public function searchV2(SearchQueryInterface $query): ?ResultaatInterface;
 
     public function getBasisProfiel(QueryInterface $query);
 
